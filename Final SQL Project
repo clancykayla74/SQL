@@ -1,4 +1,4 @@
-
+-This dataset includes sales data, product information and customer information.-
 
 1.
 SELECT customers.CustomerId, Customers.FirstName, Customers.LastName, customers.country 
