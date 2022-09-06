@@ -1,1 +1,57 @@
 
+
+1.
+SELECT customers.CustomerId, Customers.FirstName, Customers.LastName, customers.country 
+FROM chinook.customers
+WHERE country <> 'USA';
+
+2.
+SELECT customers.CustomerId, Customers.FirstName, Customers.LastName
+FROM chinook.customers
+WHERE country='Brazil';
+
+3.
+SELECT customers.CustomerId, Customers.FirstName, Customers.LastName, 
+invoices.InvoiceId, invoices.InvoiceId, invoices.InvoiceDate, invoices.BillingCountry
+FROM customers
+JOIN invoices 
+ON customers.CustomerId=invoices.CustomerId
+WHERE invoices.BillingCountry='Brazil';
+
+4.
+SELECT employees.EmployeeId, employees.FirstName, employees.LastName, employees.Title
+FROM chinook.employees
+WHERE title='Sales Support Agent';
+
+5.
+SELECT DISTINCT(invoices.BillingCountry) FROM chinook.invoices;
+
+6.
+SELECT employees.LastName, employees.FirstName, invoices.InvoiceId
+FROM chinook.employees
+JOIN chinook.customers ON customers.SupportRepId=employees.EmployeeId
+JOIN chinook.invoices ON invoices.CustomerId=customers.CustomerId;
+
+7.
+SELECT emp.LastName, emp.Firstname, cust.FirstName, cust.LastName, cust.Country, inv.total
+FROM chinook.employees emp 
+JOIN chinook.Customers cust ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv ON Inv.CustomerId = cust.CustomerId;
+
+8.
+SELECT COUNT(invoices.InvoiceDate) FROM chinook.invoices
+WHERE invoices.InvoiceDate LIKE '2009%';
+
+9.
+SELECT SUM(invoices.Total) AS total_sales FROM chinook.invoices
+WHERE invoices.InvoiceDate LIKE '2009%';
+
+10.
+SELECT tracks.Name, invoice_items.InvoiceLineId
+FROM chinook.invoice_items
+JOIN chinook.tracks ON invoice_items.TrackId=tracks.TrackId;
+
+11.
+SELECT tracks.Name, tracks.Composer, invoice_items.InvoiceLineId
+FROM chinook.invoice_items
+JOIN chinook.tracks ON invoice_items.TrackId= tracks.TrackId;
