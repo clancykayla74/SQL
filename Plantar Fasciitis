@@ -1,0 +1,55 @@
+CREATE TABLE PT_Interventions (
+	id INTEGER PRIMARY KEY,
+	name TEXT,
+	description TEXT,
+	recommendation_grade TEXT,
+	evidence_level INTEGER);
+
+INSERT INTO PT_Interventions VALUES (1, "manual therapy", "joint and
+soft tissue mobilization, procedures to treat relevant lower
+extremity joint mobility, calf flexibility deficits and to decrease
+pain and improve function in individuals with heel pain/plantar
+fasciitis.", "A", 1);
+INSERT INTO PT_Interventions VALUES (2, "stretching", "plantar fascia–specific, gastrocnemius/soleus stretching to provide short-term pain relief.Heel pads may be used to increase the benefits of stretching.", "A", 1);
+INSERT INTO PT_Interventions VALUES (3, "taping", "antipronation taping for immediate pain reduction/improved function.Clinicians
+may use elastic therapeutic tape applied to the gastrocnemius/plantar fascia for short-term pain reduction.", "A", 1);
+INSERT INTO PT_Interventions VALUES (4, "night splint", "a 1- to 3-month program of night
+splints for individuals who
+consistently have pain with the first step in the morning.", "A", 1);
+INSERT INTO PT_Interventions VALUES (5, "foot orthoses", "either prefabricated or
+custom fabricated/fitted, to support the medial longitudinal
+arch and cushion the heel for short to longterm periods", "A", 1);
+INSERT INTO PT_Interventions VALUES (6, "electrotherapy", "clinicians should use manual therapy,
+stretching, and foot orthoses instead of electrotherapeutic
+modalities, to promote intermediate and long-term (1-6 months)
+improvements", "D", 2);
+INSERT INTO PT_Interventions VALUES (7, "lazer", "Clinicians may use low-level laser therapy to
+reduce pain and activity limitations", "C", 3);
+INSERT INTO PT_Interventions VALUES (8, "Phonophoresis", "clinicians may use phonophoresis with ketoprofen gel to reduce pain", "C", 3);
+INSERT INTO PT_Interventions VALUES (9, "Ultrasound", "Ultrasound: the use of ultrasound cannot be recommended", "C", 3);
+INSERT INTO PT_Interventions VALUES (10, "footwear", "clinicians may prescribe a rocker-bottom shoe construction in conjunction with a foot orthosis, shoe rotation during the work week for those who stand for long periods.", "C", 3);
+INSERT INTO PT_Interventions VALUES (11, "Education", "Clinicians may provide education and counseling on exercise
+strategies to gain or maintain optimal lean body mass and may also refer individuals to an appropriate health care practitioner to address nutrition issues.", "E", 5);
+INSERT INTO PT_Interventions VALUES (12, "Exercise", "Clinicians may prescribe strengthening exercises and movement training for muscles that control pronation and attenuate forces during weight-bearing activities.", "F", 5);
+INSERT INTO PT_Interventions VALUES (13, "Dry needling", "The use of trigger point dry needling cannot be recommended", "F", 5);
+
+CREATE TABLE Evidence_levels (id INTEGER PRIMARY KEY, grade TEXT, strength TEXT);
+INSERT INTO Evidence_levels VALUES (1, "A", "Strong Evidence");
+INSERT INTO Evidence_levels VALUES (2, "B", "moderate evidence");
+INSERT INTO Evidence_levels VALUES (3, "C", "weak evidence");
+INSERT INTO Evidence_levels VALUES (4, "D", "conflicting evidence"); 
+INSERT INTO Evidence_levels VALUES (5, "E", "theoretical evidence");
+INSERT INTO Evidence_levels VALUES (6, "F", "expert opinion"
+);
+
+--STRONGEST INTERVENTION RECOMMENDATIONS--
+
+SELECT name, recommendation_grade FROM PT_Interventions WHERE recommendation_grade ="A";
+
+--Description and grade level for each intervention--
+
+SELECT PT_Interventions.name, PT_Interventions.description, Evidence_levels.grade FROM PT_Interventions JOIN Evidence_levels ON PT_Interventions.recommendation_grade= Evidence_levels.grade;
+
+--All interventions ordered by grade level--
+
+SELECT * FROM PT_Interventions ORDER BY evidence_level ASC;
