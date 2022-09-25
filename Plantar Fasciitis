@@ -1,3 +1,6 @@
+-- Physical Therapy Recommendations for Plantar Fasciitis--
+-- REFERENCE: https://www.jospt.org/doi/pdf/10.2519/jospt.2014.0303--
+
 CREATE TABLE PT_Interventions (
 	id INTEGER PRIMARY KEY,
 	name TEXT,
